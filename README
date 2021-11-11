@@ -1,0 +1,23 @@
+                  Creating Your Own Troff Macros
+                             Seninha
+
+This repository contains the slides, in PDF format, used during my
+presentation at the nixers.net conf 2021[1].  It also contains the
+roff source code of that document.   This roff source code was not
+written manually.  Instead, it was generated automatically with an
+awk script called `i2roff` which converts txt files written in the
+incipit format into troff documents.  This roff document should be
+converted into postscript (and then to PDF), using a set of macros
+that I created; those macros are in the `p.tmac` file.  A makefile
+automatizes that conversion process.
+
+At the sample/ directory, there are three files.  One of them is a
+macro package containing the macros that were developed during the
+presentation.   The other is a sample document written using those
+macros (this document is actually the very first paragraphs of The
+C Programming Language book by K&R).  And then there is a makefile
+that converts those two files into a PDF document in A4 format.
+
+The generated PDF files are distributed in this repository.
+
+[1]: https://nixers.net/Thread-Nixers-net-Conf-2021

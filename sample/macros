@@ -1,0 +1,90 @@
+.de PP
+.br
+.ft R
+.ps \\n(PS
+.vs \\n(VS
+.sp \\n(PDu
+.ne 1+\\n(.Vu
+.in 0
+.ti \\n(PIu
+..
+.de SH
+.br
+.ft B
+.ps \\n(PS+2
+.vs \\n(VS+2
+.sp 1
+.ne 5
+.in 0
+.nr SH +1
+\\n(SH.
+..
+.de TL
+.br
+.ce
+.ft B
+.ps \\n(PS+4
+.vs \\n(VS+4
+.sp 4
+.in 0
+..
+.de TM  \" top margin
+'sp 1i  \" space 1 inch from the top
+..
+.de BM  \" bottom margin
+'bp     \" break page
+..
+.wh 0   TM
+.de FO  \" footer
+.ft R
+.ps \\n(PS-2
+.tl ""%""
+.ps \\n(PS
+..
+.wh -1i BM
+.wh -0.5i FO
+.de FS
+.br
+.sp \\n(PDu
+.di FI
+..
+.de FE
+.br
+.di
+.ne \\n(dnu
+.FI
+..
+.de CS  \" code start
+.br
+.nf
+.sp \\n(PDu
+.di CI
+.ft CW
+..
+.de CE  \" code end
+.br
+.di
+.ne \\n(dnu
+.in \\n(PIu*2u  \" indent right
+.CI             \" print code
+.in 0           \" indent back
+.fi
+..
+.de I   \" italic font
+.ft I
+\\$1
+.ft
+..
+.de B   \" bold font
+.ft B
+\\$1
+.ft
+..
+.nr PD 1v
+.nr PS 12
+.nr VS 14
+.nr PI 5n
+.fi     \" enable fill mode
+.ll 16c \" A4 line lenght for text
+.lt 16c \" A4 line lenght for .tl
+.pl 29.7c \" A4 page length

@@ -1,0 +1,545 @@
+.fp 1 R LinLibertine_R ttf
+.fp 2 I LinLibertine_RI ttf
+.fp 3 B LinLibertine_RB ttf
+.fp 4 V LinLibertine_R ttf
+.nr SP 2
+.nr SS 3
+.nr SD 
+.nr PS 
+.ps \n(PS
+.nr VS 
+.vs \n(VS
+.nr PD 
+.TL "Creating Your Own Troff Macros"
+.AU "Seninha"
+.FS
+.PP
+.BP "./conf.eps" "" "" "c" "" "" ""
+.FE
+.SH 1 "What is troff"
+.PP "Troff vs Nroff\&."
+.LS
+.LI
+\f(CWtroff(1)\fP \(hy format documents for typesetting
+.LI
+\f(CWnroff(1)\fP \(hy format documents for terminal
+.LI
+Implementations\&.
+.LS
+.LI
+groff\&.
+.LI
+neatroff\&.
+.LI
+plan9 troff\&.
+.LI
+heirloom doctools\&.
+.LE
+.LE
+.PP "Example of troff document\&."
+.FS
+.CS
+\&.TL
+Title of the document
+\&.SH
+First section.
+\&.PP
+This is a paragraph!
+The following figure is a quotation.
+\&.FS
+\&.PP
+I\(aqd just like to interject for a moment.
+What you\(aqre referring to as Linux,
+is in fact, GNU/Linux,
+or as I\(aqve recently taken to calling it,
+GNU plus Linux.
+\&.FE
+.CE
+.FE
+.PP "Do not use low\(hylevel troff commands\&."
+.LS
+.LI "Requests: "
+low\(hylevel commands by troff\&.
+.LI "Macros: "
+high\(hylevel commands by packages\&.
+.LI
+Requests deal with fine formating (indentation, spacing, point size, etc)\&.
+.LI
+Macros deal with text elements (title, paragraphs, figures, etc)\&.
+.LE
+.PP "How to use troff?"
+.LS
+.LI
+pre\(hyprocessors
+.LI
+troff
+.LI
+post\(hyprocessors
+.LE
+.FS
+.CS
+<file.roff pre | troff | post >file.ps
+.CE
+.FE
+.SH 1 "Troff requests"
+.PP "Writing a paragraph in plain troff\&."
+.FS
+.CS
+\&.br      \e\(dq break line
+\&.ft R    \e\(dq set font to roman
+\&.ps 12   \e\(dq set point size to 12pt
+\&.vs 14pt \e\(dq set vertical space to 14pt
+\&.sp 12pt \e\(dq space down 12pt
+\&.ne 3    \e\(dq get rid of orphans
+\&.in 0    \e\(dq set paragraph indentation
+\&.ti 5n   \e\(dq set first line indentation
+I am a paragraph!
+.CE
+.FE
+.PP "Number registers\&."
+.FS
+.CS
+\&.br
+\&.ft R
+\&.ps \en(PS
+\&.vs \en(VS
+\&.sp \en(PDu
+\&.ne 1+\en(.Vu
+\&.in 0
+\&.ti \en(PIu
+I am a paragraph!
+
+\&.\e\(dq I am a comment!
+\&.\e\(dq \enA
+\&.\e\(dq \en(AB
+\&.\e\(dq \en[ABCD]
+.CE
+.FE
+.PP "Units of measure\&."
+.LS
+.LI
+\f(CWc\fP \(hy Centimeters\&.
+.LI
+\f(CWi\fP \(hy Inches\&.
+.LI
+\f(CWm\fP \(hy Ems (font\(hydependent)\&.
+.LI
+\f(CWn\fP \(hy Ens (font\(hydependent)\&.
+.LI
+\f(CWp\fP \(hy Points\&.
+.LI
+\f(CWu\fP \(hy Device units\&.
+.LI
+\f(CWv\fP \(hy Vertical space\&.
+.LE
+.FS
+.CS
+\&.\e\(dq PI \(hy Paragraph Indentation
+\&.nr PI 5n
+.CE
+.FE
+.PP "How can we improve our paragraphs?"
+.FS
+.CS
+\&.br
+\&.ft R
+\&.ps \en(PS
+\&.vs \en(VS
+\&.sp \en(PDu
+\&.ne 1+\en(.Vu
+\&.in 0
+\&.ti \en(PIu
+I am a paragraph!
+\&.br
+\&.ft R
+\&...\e\(dq repeat all those requests
+I am another paragraph!
+.CE
+.FE
+.PP "A macro for paragraphs\&."
+.FS
+.CS
+\&.PP
+I am a paragraph!
+\&.PP
+I am another paragraph!
+.CE
+.FE
+.SH 1 "Macros"
+.PP "Defining a macro\&."
+There\(aqs an error here (people who use m4(1) or any macro processor can
+identify)\&.
+.FS
+.CS
+\&.de PP
+\&.br
+\&.ft R
+\&.ps \en(PS
+\&.vs \en(VS
+\&.sp \en(PDu
+\&.ne 1+\en(.Vu
+\&.in 0
+\&.ti \en(PIu
+\&..
+.CE
+.FE
+.PP "Changing a number register the macro uses\&."
+.FS
+.CS
+\&.de PP
+\&.br
+\&.ft R
+\&.ps \en(PS
+\&.vs \en(VS
+\&.sp \en(PDu
+\&.ne 1+\en(.Vu
+\&.in 0
+\&.ti \en(PIu
+\&..
+\&.PP
+Paragraph indented 5 ens (default).
+\&.nr PI 3i
+\&.PP
+Paragraph indented 3 inches?
+.CE
+.FE
+.PP "Escaping number registers\&."
+.FS
+.CS
+\&.de PP
+\&.br
+\&.ft R
+\&.ps \e\en(PS
+\&.vs \e\en(VS
+\&.sp \e\en(PDu
+\&.ne 1+\e\en(.Vu
+\&.in 0
+\&.ti \e\en(PIu
+\&..
+\&.PP
+Paragraph indented 5 ens (default).
+\&.nr PI 3i
+\&.PP
+Paragraph indented 3 inches!
+.CE
+.FE
+.PP "Macros with arguments\&."
+.FS
+.CS
+\&.de PP
+\&.br
+\&.ft R
+\&.ps \e\en(PS
+\&.vs \e\en(VS
+\&.sp \e\en(PDu
+\&.ne 1+\e\en(.Vu
+\&.in 0
+\&.ie \e\e$1 .ti \e\e$1u
+\&.el      .ti \e\en(PIu
+\&..
+\&.PP
+Paragraph indented 5 ens (default).
+\&.PP 3i
+Paragraph indented 3 inches!
+.CE
+.FE
+.SH 1 "Macro packages"
+.PP "Macro packages\&."
+.LS
+.LI
+Each macro package has a different set of macros\&.
+.LI
+And a different set of number registers\&.
+.LE
+.FS
+.TS
+center, allbox;
+c c c
+l l l
+l l l
+l l l
+l l l
+l l l
+l l l
+l l l
+l l l
+l l l.
+T{
+Macro
+T}	T{
+In \(hyms
+T}	T{
+In \(hymm
+T}
+_
+T{
+Paragraph
+T}	T{
+\f(CW\&.PP\fP/\f(CW.LP\fP/\f(CW.IP\fP
+T}	T{
+\f(CW\&.P\fP
+T}
+T{
+Heading
+T}	T{
+\f(CW\&.SH\fP/\f(CW.NH\fP
+T}	T{
+\f(CW\&.HU\fP/\f(CW.H\fP
+T}
+T{
+Title
+T}	T{
+\f(CW\&.TL\fP
+T}	T{
+\f(CW\&.TL\fP
+T}
+T{
+Abstract
+T}	T{
+\f(CW\&.AB\fP, \f(CW.AE\fP
+T}	T{
+\f(CW\&.AS\fP, \f(CW.AE\fP
+T}
+T{
+Author
+T}	T{
+\f(CW\&.AU\fP, \f(CW.AI\fP
+T}	T{
+\f(CW\&.AU\fP
+T}
+T{
+Bold text
+T}	T{
+\f(CW\&.B\fP
+T}	T{
+\f(CW\&.B\fP/\f(CW.BI\fP/\f(CW.IB\fP
+T}
+T{
+Italic text
+T}	T{
+\f(CW\&.I\fP
+T}	T{
+\f(CW\&.I\fP/\f(CW.IB\fP/\f(CW.BI\fP
+T}
+T{
+Text size
+T}	T{
+\f(CW\&.LG\fP/\f(CW.SM\fP
+T}	T{
+\f(CW\&.S\fP/\f(CW.SM\fP
+T}
+T{
+Lists
+T}	T{
+(does not have)
+T}	T{
+\f(CW\&.BL\fP/\f(CW.ML\fP/\f(CW.DL\fP/...
+T}
+.TE
+.FE
+.PP "Why write our own macro package?"
+.LS
+.LI
+Fine control of the output\&.
+.LI
+Expand an existing macro\&.
+.LI
+Understand how troff works\&.
+.LE
+.SH 1 "Contents of a macro package"
+.PP "What does a macro package have?"
+.LS
+.LI
+Macros for text elements (paragraphs, headings, title, etc)\&.
+.LI
+Page traps for margins\&.
+.LI
+Diversions for figures\&.
+.LI
+Initialization\&.
+.LE
+.PP "Macro for paragraphs\&."
+.FS
+.CS
+\&.de PP
+\&.br
+\&.ft R
+\&.ps \e\en(PS
+\&.vs \e\en(VS
+\&.sp \e\en(PDu
+\&.ne 1+\e\en(.Vu
+\&.in 0
+\&.ti \e\en(PIu
+\&..
+.CE
+.FE
+.PP "Macro for section headings\&."
+.FS
+.CS
+\&.de SH
+\&.br
+\&.ft B
+\&.ps \e\en(PS+2
+\&.vs \e\en(VS+2
+\&.sp 1
+\&.ne 5
+\&.in 0
+\&.nr SH +1
+\e\en(SH.
+\&..
+.CE
+.FE
+.PP "Macro for title\&."
+.FS
+.CS
+\&.de TL
+\&.br
+\&.ce
+\&.ft B
+\&.ps \e\en(PS+4
+\&.vs \e\en(VS+4
+\&.sp 4
+\&.in 0
+\&..
+.CE
+.FE
+.PP "Page traps for top and bottom margins\&."
+.FS
+.PP
+.BP "page.eps" "" "" "c" "" "" ""
+.FE
+.PP "Page traps for top and bottom margins\&."
+.FS
+.CS
+\&.de TM  \e\(dq top margin
+\(aqsp 1i  \e\(dq space 1 inch from the top
+\&..
+\&.de BM  \e\(dq bottom margin
+\(aqbp     \e\(dq break page
+\&..
+\&.wh 0   TM
+\&.wh \(hy1i BM
+.CE
+.FE
+.PP "Page trap for headers and footers\&."
+.FS
+.CS
+\&.de FO  \e\(dq footer
+\&.ft R
+\&.ps \e\en(PS\(hy2
+\&.tl \(dq\(dq%\(dq\(dq
+\&.ps \e\en(PS
+\&..
+\&.wh \(hy0.5i FO
+.CE
+.FE
+.PP "Figures (table, image, code snippet, etc)\&."
+.LS
+.LI
+A figure should not be broken between pages\&.
+.LI
+If a figure is longer than the remaining of the page, write the figure
+in the next page\&.
+.LI
+But how to get the length of a figure BEFORE writing it?
+.LI
+Diversion!
+.LE
+.PP "Figures\&."
+.FS
+.CS
+\&.de FS  \e\(dq figure start
+\&.br
+\&.sp \e\en(PDu
+\&.di FI
+\&..
+\&.de FE  \e\(dq figure end
+\&.br
+\&.di
+\&.ne \e\en(dnu
+\&.FI
+\&..
+.CE
+.FE
+.PP "Code listing\&."
+.FS
+.CS
+\&.de CS  \e\(dq code start
+\&.br
+\&.nf
+\&.sp \e\en(PDu
+\&.di CI
+\&.ft CW
+\&..
+\&.de CE  \e\(dq code end
+\&.br
+\&.di
+\&.ne \e\en(dnu
+\&.CI
+\&.fi
+\&..
+.CE
+.FE
+.PP "Font changing macros\&."
+.FS
+.CS
+\&.de I \e\(dq italic font
+\&.ft I
+\e\e$1
+\&.ft
+\&..
+\&.de B  \e\(dq bold font
+\&.ft B
+\e\e$1
+\&.ft
+\&..
+.CE
+.FE
+.PP "Initialization\&."
+.FS
+.CS
+\&.nr PD 1v
+\&.nr PS 12
+\&.nr VS 14
+\&.nr PI 5n
+\&.fi       \e\(dq enable fill mode
+\&.ll 16c   \e\(dq A4 line lenght for text
+\&.lt 16c   \e\(dq A4 line lenght for .tl
+\&.pl 29.7c \e\(dq A4 page length
+.CE
+.FE
+.SH 1 "Conclusion"
+.PP "Macros vs requests\&."
+.LS
+.LI
+Use the \f(CW\(hyms\fP macro package first\&.
+.LI
+Expand the \f(CW\(hyms\fP macro to your needs\&.
+.LI
+Write your own macro package\&.
+.LE
+.PP "Example of document\&."
+.FS
+.CS
+\&.PP
+Welcome to this document.
+Good reading
+\&.SH
+First section.
+\&.PP
+Here\(aqs a quotation.
+\&.FS
+\&.PP
+I\(aqd just like to interject for a moment.
+What you\(aqre referring to as Linux,
+is in fact, GNU/Linux,
+or as I\(aqve recently taken to calling it,
+GNU plus Linux.
+\&.FE
+.CE
+.FE
+.PP "The end\&."
+.LS
+.LI
+Questions?
+.LE
