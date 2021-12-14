@@ -1,15 +1,3 @@
-.fp 1 R LinLibertine_R ttf
-.fp 2 I LinLibertine_RI ttf
-.fp 3 B LinLibertine_RB ttf
-.fp 4 V LinLibertine_R ttf
-.nr SP 2
-.nr SS 3
-.nr SD 
-.nr PS 
-.ps \n(PS
-.nr VS 
-.vs \n(VS
-.nr PD 
 .TL "Creating Your Own Troff Macros"
 .AU "Seninha"
 .FS
@@ -42,25 +30,25 @@ heirloom doctools\&.
 \&.TL
 Title of the document
 \&.SH
-First section.
+First section\&.
 \&.PP
 This is a paragraph!
-The following figure is a quotation.
+The following figure is a quotation\&.
 \&.FS
 \&.PP
-I\(aqd just like to interject for a moment.
+I\(aqd just like to interject for a moment\&.
 What you\(aqre referring to as Linux,
 is in fact, GNU/Linux,
 or as I\(aqve recently taken to calling it,
-GNU plus Linux.
+GNU plus Linux\&.
 \&.FE
 .CE
 .FE
 .PP "Do not use low\(hylevel troff commands\&."
 .LS
-.LI "Requests: "
+.LI "Requests:"
 low\(hylevel commands by troff\&.
-.LI "Macros: "
+.LI "Macros:"
 high\(hylevel commands by packages\&.
 .LI
 Requests deal with fine formating (indentation, spacing, point size, etc)\&.
@@ -78,7 +66,7 @@ post\(hyprocessors
 .LE
 .FS
 .CS
-<file.roff pre | troff | post >file.ps
+<file\&.roff pre | troff | post >file\&.ps
 .CE
 .FE
 .SH 1 "Troff requests"
@@ -104,7 +92,7 @@ I am a paragraph!
 \&.ps \en(PS
 \&.vs \en(VS
 \&.sp \en(PDu
-\&.ne 1+\en(.Vu
+\&.ne 1+\en(\&.Vu
 \&.in 0
 \&.ti \en(PIu
 I am a paragraph!
@@ -146,13 +134,13 @@ I am a paragraph!
 \&.ps \en(PS
 \&.vs \en(VS
 \&.sp \en(PDu
-\&.ne 1+\en(.Vu
+\&.ne 1+\en(\&.Vu
 \&.in 0
 \&.ti \en(PIu
 I am a paragraph!
 \&.br
 \&.ft R
-\&...\e\(dq repeat all those requests
+\&.\&.\&.\e\(dq repeat all those requests
 I am another paragraph!
 .CE
 .FE
@@ -177,10 +165,10 @@ identify)\&.
 \&.ps \en(PS
 \&.vs \en(VS
 \&.sp \en(PDu
-\&.ne 1+\en(.Vu
+\&.ne 1+\en(\&.Vu
 \&.in 0
 \&.ti \en(PIu
-\&..
+\&.\&.
 .CE
 .FE
 .PP "Changing a number register the macro uses\&."
@@ -192,12 +180,12 @@ identify)\&.
 \&.ps \en(PS
 \&.vs \en(VS
 \&.sp \en(PDu
-\&.ne 1+\en(.Vu
+\&.ne 1+\en(\&.Vu
 \&.in 0
 \&.ti \en(PIu
-\&..
+\&.\&.
 \&.PP
-Paragraph indented 5 ens (default).
+Paragraph indented 5 ens (default)\&.
 \&.nr PI 3i
 \&.PP
 Paragraph indented 3 inches?
@@ -212,12 +200,12 @@ Paragraph indented 3 inches?
 \&.ps \e\en(PS
 \&.vs \e\en(VS
 \&.sp \e\en(PDu
-\&.ne 1+\e\en(.Vu
+\&.ne 1+\e\en(\&.Vu
 \&.in 0
 \&.ti \e\en(PIu
-\&..
+\&.\&.
 \&.PP
-Paragraph indented 5 ens (default).
+Paragraph indented 5 ens (default)\&.
 \&.nr PI 3i
 \&.PP
 Paragraph indented 3 inches!
@@ -232,13 +220,13 @@ Paragraph indented 3 inches!
 \&.ps \e\en(PS
 \&.vs \e\en(VS
 \&.sp \e\en(PDu
-\&.ne 1+\e\en(.Vu
+\&.ne 1+\e\en(\&.Vu
 \&.in 0
-\&.ie \e\e$1 .ti \e\e$1u
-\&.el      .ti \e\en(PIu
-\&..
+\&.ie \e\e$1 \&.ti \e\e$1u
+\&.el      \&.ti \e\en(PIu
+\&.\&.
 \&.PP
-Paragraph indented 5 ens (default).
+Paragraph indented 5 ens (default)\&.
 \&.PP 3i
 Paragraph indented 3 inches!
 .CE
@@ -275,16 +263,16 @@ _
 T{
 Paragraph
 T}	T{
-\f(CW\&.PP\fP/\f(CW.LP\fP/\f(CW.IP\fP
+\f(CW\&.PP\fP/\f(CW\&.LP\fP/\f(CW\&.IP\fP
 T}	T{
 \f(CW\&.P\fP
 T}
 T{
 Heading
 T}	T{
-\f(CW\&.SH\fP/\f(CW.NH\fP
+\f(CW\&.SH\fP/\f(CW\&.NH\fP
 T}	T{
-\f(CW\&.HU\fP/\f(CW.H\fP
+\f(CW\&.HU\fP/\f(CW\&.H\fP
 T}
 T{
 Title
@@ -296,14 +284,14 @@ T}
 T{
 Abstract
 T}	T{
-\f(CW\&.AB\fP, \f(CW.AE\fP
+\f(CW\&.AB\fP, \f(CW\&.AE\fP
 T}	T{
-\f(CW\&.AS\fP, \f(CW.AE\fP
+\f(CW\&.AS\fP, \f(CW\&.AE\fP
 T}
 T{
 Author
 T}	T{
-\f(CW\&.AU\fP, \f(CW.AI\fP
+\f(CW\&.AU\fP, \f(CW\&.AI\fP
 T}	T{
 \f(CW\&.AU\fP
 T}
@@ -312,28 +300,28 @@ Bold text
 T}	T{
 \f(CW\&.B\fP
 T}	T{
-\f(CW\&.B\fP/\f(CW.BI\fP/\f(CW.IB\fP
+\f(CW\&.B\fP/\f(CW\&.BI\fP/\f(CW\&.IB\fP
 T}
 T{
 Italic text
 T}	T{
 \f(CW\&.I\fP
 T}	T{
-\f(CW\&.I\fP/\f(CW.IB\fP/\f(CW.BI\fP
+\f(CW\&.I\fP/\f(CW\&.IB\fP/\f(CW\&.BI\fP
 T}
 T{
 Text size
 T}	T{
-\f(CW\&.LG\fP/\f(CW.SM\fP
+\f(CW\&.LG\fP/\f(CW\&.SM\fP
 T}	T{
-\f(CW\&.S\fP/\f(CW.SM\fP
+\f(CW\&.S\fP/\f(CW\&.SM\fP
 T}
 T{
 Lists
 T}	T{
 (does not have)
 T}	T{
-\f(CW\&.BL\fP/\f(CW.ML\fP/\f(CW.DL\fP/...
+\f(CW\&.BL\fP/\f(CW\&.ML\fP/\f(CW\&.DL\fP/\&.\&.\&.
 T}
 .TE
 .FE
@@ -367,10 +355,10 @@ Initialization\&.
 \&.ps \e\en(PS
 \&.vs \e\en(VS
 \&.sp \e\en(PDu
-\&.ne 1+\e\en(.Vu
+\&.ne 1+\e\en(\&.Vu
 \&.in 0
 \&.ti \e\en(PIu
-\&..
+\&.\&.
 .CE
 .FE
 .PP "Macro for section headings\&."
@@ -385,8 +373,8 @@ Initialization\&.
 \&.ne 5
 \&.in 0
 \&.nr SH +1
-\e\en(SH.
-\&..
+\e\en(SH\&.
+\&.\&.
 .CE
 .FE
 .PP "Macro for title\&."
@@ -400,7 +388,7 @@ Initialization\&.
 \&.vs \e\en(VS+4
 \&.sp 4
 \&.in 0
-\&..
+\&.\&.
 .CE
 .FE
 .PP "Page traps for top and bottom margins\&."
@@ -413,10 +401,10 @@ Initialization\&.
 .CS
 \&.de TM  \e\(dq top margin
 \(aqsp 1i  \e\(dq space 1 inch from the top
-\&..
+\&.\&.
 \&.de BM  \e\(dq bottom margin
 \(aqbp     \e\(dq break page
-\&..
+\&.\&.
 \&.wh 0   TM
 \&.wh \(hy1i BM
 .CE
@@ -429,8 +417,8 @@ Initialization\&.
 \&.ps \e\en(PS\(hy2
 \&.tl \(dq\(dq%\(dq\(dq
 \&.ps \e\en(PS
-\&..
-\&.wh \(hy0.5i FO
+\&.\&.
+\&.wh \(hy0\&.5i FO
 .CE
 .FE
 .PP "Figures (table, image, code snippet, etc)\&."
@@ -452,13 +440,13 @@ Diversion!
 \&.br
 \&.sp \e\en(PDu
 \&.di FI
-\&..
+\&.\&.
 \&.de FE  \e\(dq figure end
 \&.br
 \&.di
 \&.ne \e\en(dnu
 \&.FI
-\&..
+\&.\&.
 .CE
 .FE
 .PP "Code listing\&."
@@ -470,14 +458,14 @@ Diversion!
 \&.sp \e\en(PDu
 \&.di CI
 \&.ft CW
-\&..
+\&.\&.
 \&.de CE  \e\(dq code end
 \&.br
 \&.di
 \&.ne \e\en(dnu
 \&.CI
 \&.fi
-\&..
+\&.\&.
 .CE
 .FE
 .PP "Font changing macros\&."
@@ -487,12 +475,12 @@ Diversion!
 \&.ft I
 \e\e$1
 \&.ft
-\&..
+\&.\&.
 \&.de B  \e\(dq bold font
 \&.ft B
 \e\e$1
 \&.ft
-\&..
+\&.\&.
 .CE
 .FE
 .PP "Initialization\&."
@@ -504,8 +492,8 @@ Diversion!
 \&.nr PI 5n
 \&.fi       \e\(dq enable fill mode
 \&.ll 16c   \e\(dq A4 line lenght for text
-\&.lt 16c   \e\(dq A4 line lenght for .tl
-\&.pl 29.7c \e\(dq A4 page length
+\&.lt 16c   \e\(dq A4 line lenght for \&.tl
+\&.pl 29\&.7c \e\(dq A4 page length
 .CE
 .FE
 .SH 1 "Conclusion"
@@ -522,19 +510,19 @@ Write your own macro package\&.
 .FS
 .CS
 \&.PP
-Welcome to this document.
+Welcome to this document\&.
 Good reading
 \&.SH
-First section.
+First section\&.
 \&.PP
-Here\(aqs a quotation.
+Here\(aqs a quotation\&.
 \&.FS
 \&.PP
-I\(aqd just like to interject for a moment.
+I\(aqd just like to interject for a moment\&.
 What you\(aqre referring to as Linux,
 is in fact, GNU/Linux,
 or as I\(aqve recently taken to calling it,
-GNU plus Linux.
+GNU plus Linux\&.
 \&.FE
 .CE
 .FE
